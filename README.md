@@ -1,5 +1,5 @@
 # FakeOS
-A simple terminal **simulator** writen in Python3.
+A simple terminal **simulator** written in Python3.
 
 ## Setup
 - The only dependence of this project is [**Art**](https://pypi.org/project/art/) module.
