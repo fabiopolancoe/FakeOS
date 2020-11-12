@@ -17,4 +17,4 @@ I decided to make it easier for users to create their own apps for FakeOS, just 
 ## Files
 There's a folder named home, where all the files of the "user" are saved by default, you can edit apps.py to use another folder.
 
-Thanks to @Kerumi for his feedback
+Thanks to @KelviNosse for his feedback
