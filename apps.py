@@ -60,11 +60,11 @@ if sys.platform != 'win32':
         subprocess.call("ipython3")
         print("")
 
-def edit(filename):
+def edit(filename, editor="nano"):
     try:
-        subprocess.call(["nano", "/home/$FAKEOSHOME/"+filename])
+        subprocess.call([editor, "/home/$FAKEOSHOME/"+filename])
     except:
-        subprocess.call(["nano", "./home/"+filename])
+        subprocess.call([editor, "./home/"+filename])
 
 def install():
     print("Setup is not available for now, I'm working on it, sorry D:")
