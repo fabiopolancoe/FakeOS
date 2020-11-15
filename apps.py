@@ -11,7 +11,7 @@ def hello():
 def numguess():
     number = randint(1, 10)
     guess = int(input("I'm thinking a number from 1 to 10, try to guess it > "))
-    
+
     if guess == number:
         print("¡Wow, you did it! :D")
     else:
@@ -19,7 +19,7 @@ def numguess():
 
 def ls():
     home = os.listdir("./home")
-    
+
     if home:
         for element in home:
             print(element+"\n")
@@ -27,10 +27,16 @@ def ls():
         print("Home is empty, fill it with anything you want :D")
 
 def new(filename):
-    subprocess.call(["touch", "/home/$FAKEOSHOME/" + filename])
+    if sys.platform == 'win32':
+        os.system("type nul > " + ".\\home\\" + filename)
+    else:
+        subprocess.call(["touch", "/home/$FAKEOSHOME/" + filename])
 
 def show(filename):
-    subprocess.call(["cat", "/home/$FAKEOSHOME/" + filename])
+    if sys.platform == 'win32':
+        os.system('type ' + '.\\home\\' + filename)
+    else:
+        subprocess.call(["cat", "/home/$FAKEOSHOME/" + filename])
 
 def help(*method):
     if method:
@@ -62,9 +68,9 @@ if sys.platform != 'win32':
 
 def edit(filename):
     try:
-        subprocess.call(["nano", "/home/$FAKEOSHOME/"+filename])
+        subprocess.call(["nano", "/home/$FAKEOSHOME/" + filename])
     except:
-        subprocess.call(["nano", "./home/"+filename])
+        subprocess.call(["nano", "./home/" + filename])
 
 def install():
     print("Setup is not available for now, I'm working on it, sorry D:")
