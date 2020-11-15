@@ -32,7 +32,7 @@ def new(filename):
     if sys.platform == 'win32':
         os.system("type nul > " + ".\\home\\" + filename)
     else:
-        subprocess.call(["touch", "/home/$FAKEOSHOME/" + filename])
+        subprocess.call(["touch", "./home/" + filename])
 
 def show(filename):
     if sys.platform == 'win32':
@@ -72,10 +72,7 @@ def interactive():
 
 def edit(filename):
     editor = os.getenv("TEXT_EDITOR")
-    try:
-        subprocess.call([editor, "/home/$FAKEOSHOME/" + filename])
-    except:
-        subprocess.call([editor, "./home/" + filename])
+    subprocess.call([editor, "./home/" + filename])
 
 def install():
     print("Setup is not available for now, I'm working on it, sorry D:")
