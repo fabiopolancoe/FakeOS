@@ -1,4 +1,9 @@
 # FakeOS
+<p align="center">
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/fabiopolancoe/fakeos.svg">
+<img alt="GitHub" src="https://img.shields.io/github/license/fabiopolancoe/fakeos.svg">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/fabiopolancoe/fakeos.svg">
+<img alt="Build Status" src="https://travis-ci.com/fabiopolancoe/fakeos.svg">
 A simple terminal **simulator** written in Python3.
 
 ## Setup
