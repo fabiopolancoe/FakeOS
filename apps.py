@@ -68,15 +68,9 @@ if sys.platform != 'win32':
 
 def edit(filename, editor="nano"):
     try:
-<<<<<<< HEAD
-        subprocess.call(["nano", "/home/$FAKEOSHOME/" + filename])
+        subprocess.call([editor, "/home/$FAKEOSHOME/" + filename])
     except:
-        subprocess.call(["nano", "./home/" + filename])
-=======
-        subprocess.call([editor, "/home/$FAKEOSHOME/"+filename])
-    except:
-        subprocess.call([editor, "./home/"+filename])
->>>>>>> 0b1d7353ef236d0d46b263b8c7164719378d7357
+        subprocess.call([editor, "./home/" + filename])
 
 def install():
     print("Setup is not available for now, I'm working on it, sorry D:")
