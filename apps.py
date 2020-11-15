@@ -26,10 +26,10 @@ def ls():
         print("Home is empty, fill it with anything you want :D")
 
 def new(filename):
-    subprocess.call(["touch", "./home/" + filename])
+    subprocess.call(["touch", "/home/$FAKEOSHOME/" + filename])
 
 def show(filename):
-    subprocess.call(["cat", "./home/" + filename])
+    subprocess.call(["cat", "/home/$FAKEOSHOME/" + filename])
 
 def help(*method):
     if method:
@@ -53,4 +53,10 @@ def interactive():
     print("")
 
 def edit(filename):
-    subprocess.call(["nano", "./home/"+filename])
+    try:
+        subprocess.call(["nano", "/home/$FAKEOSHOME/"+filename])
+    except:
+        subprocess.call(["nano", "./home/"+filename])
+
+def install():
+    print("Setup is not available for now, I'm working on it, sorry D:")

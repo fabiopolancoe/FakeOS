@@ -1,39 +1,48 @@
 #!/usr/bin/env python3
 
 import signal
-from art import text2art
-import apps
 
-print(text2art("FakeOS"))
+try:
+    from art import text2art
+    print(text2art("FakeOS"))
+except:
+    pass
+
 print("Welcome to FakeOS!")
+
 
 def signal_handler(signal, frame):
     print("\nBye ;D!")
     quit()
 
-def handle_command(data):
-    method = data[0]
-    del data[0]
 
-    if method == "exit":
-        sure = input("Do you really want to logout? [Y/N] ")
-        if sure == "Y" or sure == "y":
-            print("Bye ;D!")
-            quit()
-        elif sure == "N" or sure == "n":
-            return
-        else:
-            print("You haven't chosen a correct option. Canceling logout...")
-            return
-    else:
-        try:
-            if data:
-                eval("apps." + method+"(*data)")
+def handle_command(data):
+    if data:
+        method = data[0]
+        del data[0]
+
+        if method == "exit":
+            sure = input("Do you really want to logout? [Y/N] ")
+            if sure == "Y" or sure == "y":
+                print("Bye ;D!")
+                quit()
+            elif sure == "N" or sure == "n":
+                return
             else:
-                eval("apps." + method)()
-        except:
-            print("Couldn't handle that command D:")
-            return
+                print("You haven't chosen a correct option. Canceling logout...")
+                return
+        else:
+            import apps
+            try:
+                if data:
+                    eval("apps." + method+"(*data)")
+                else:
+                    eval("apps." + method)()
+            except:
+                print("Couldn't handle that command D:")
+                return
+    else:
+        pass
 
 signal.signal(signal.SIGINT, signal_handler)
 
