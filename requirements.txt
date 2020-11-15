@@ -1,2 +1,0 @@
-art==4.9
-python-dotenv==0.15.0
