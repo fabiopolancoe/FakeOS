@@ -10,7 +10,7 @@ A simple terminal **simulator** written in Python3.
 - There are some optional dependencies:
   - Nano Editor
   - IPython3
-  - DotEnv
+  - [**DotEnv**](https://pypi.org/project/python-dotenv/)
   - [**Art**](https://pypi.org/project/art/) module
   
 ## Usage
