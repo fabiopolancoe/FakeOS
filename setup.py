@@ -36,6 +36,16 @@ def start():
     temp = input("Do you want to add FakeOS to PATH? [Y/N] ")
     if temp == "Y" or "y":
         username = input("Please tell me your username: ")
+        if sys.platform == 'win32':
+            try:
+                alias = open('./aliases.bat', 'w')
+                alias.write("""
+@echo off
+
+set PATH=%PATH%
+set "var=%cd%"
+
+DOSKEY fakeos=python %var%\\main.py"""
         try:
             if "bash" in environ['SHELL']:
                 bashrc = open('/home/' + username + '/.bashrc', 'a')

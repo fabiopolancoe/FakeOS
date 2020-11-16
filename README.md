@@ -7,6 +7,7 @@
 A simple terminal **simulator** written in Python3.
 
 ## Setup
+- The only dependence of this project is [**DotEnv**](https://pypi.org/project/dotenv/) module.
 - There are some optional dependencies:
   - Nano Editor
   - IPython3
