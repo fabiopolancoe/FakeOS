@@ -29,13 +29,13 @@ def ls():
         print("Home is empty, fill it with anything you want :D")
 
 def new(filename):
-    if sys.platform == 'win32':
+    if sys.platform.startswith() == 'win32':
         os.system("type nul > " + ".\\home\\" + filename)
     else:
         subprocess.call(["touch", "./home/" + filename])
 
 def show(filename):
-    if sys.platform == 'win32':
+    if sys.platform.startswith() == 'win32':
         os.system('type ' + '.\\home\\' + filename)
     else:
         subprocess.call(["cat", "./home/" + filename])
@@ -49,14 +49,14 @@ def help(*method):
             print(command+": "+all_commands.get(command)+"\n")
 
 def pyrun(filename):
-    if sys.platform == 'win32':
+    if sys.platform.startswith() == 'win32':
         subprocess.call(["python", filename])
     else:
         subprocess.call(["python3", filename])
 
 def pyshell():
     print("")
-    if sys.platform == 'win32':
+    if sys.platform.startswith() == 'win32':
         subprocess.call("python")
     else:
         subprocess.call("python3")
@@ -64,7 +64,7 @@ def pyshell():
 
 def interactive():
     print("")
-    if sys.platform == 'win32':
+    if sys.platform.startswith() == 'win32':
         subprocess.call('ipython')
     else:
         subprocess.call("ipython3")
