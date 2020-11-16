@@ -2,65 +2,50 @@
 
 import signal
 
-# Print the name, if the text2art module is found.
 try:
     from art import text2art
     print(text2art("FakeOS"))
-except ModuleNotFoundError, NameError:
+except:
     pass
 
-try:
-    import apps
-except ModuleNotFoundError:
-    print("The required module \"apps\" was not found, exiting...")
-    quit()
-    
-from getpass import getuser  # To get the current PC user.
-
-
-print("Welcome to FakeOS!")  # Welcome message, printed always.
+print("Welcome to FakeOS!")
 
 
 def signal_handler(signal, frame):
     print("\nBye ;D!")
     quit()
 
+
 def handle_command(data):
-    '''Handles the command the user entered. If the command is not
-    processed for any reason, the functions returns False.'''
     if data:
         method = data[0]
-        del data [0]
+        del data[0]
 
-        if method.lower() == "exit":
-            sure = input("Do you really want to log out? [Y/n]\n")
-            if sure.lower() in ["y", "yes"]:
-                print("Bye! ;D")
+        if method == "exit":
+            sure = input("Do you really want to logout? [Y/N] ")
+            if sure == "Y" or sure == "y":
+                print("Bye ;D!")
                 quit()
-            elif sure.lower() in ["n", "no", "nope"]:
-                return False
+            elif sure == "N" or sure == "n":
+                return
             else:
-                print("You did not choose a correct option.")
-                return False
-
+                print("You haven't chosen a correct option. Canceling logout...")
+                return
         else:
+            import apps
             try:
                 if data:
-                    eval("apps." + method + "(*data)")
-                    return True
+                    eval("apps." + method+"(*data)")
                 else:
-                    eval("apps." + method())
-                    return True
+                    eval("apps." + method)()
             except:
                 print("Couldn't handle that command D:")
-                return False
-                
+                return
     else:
-        return False
+        pass
 
 signal.signal(signal.SIGINT, signal_handler)
 
-# User input
 while True:
-    command = input(f"{getuser()}@FakeOS: ")
+    command = input("FOS > ")
     handle_command(command.split())
