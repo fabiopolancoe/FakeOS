@@ -7,6 +7,7 @@ import pip  # To install missing modules, if the user allows us
 from getpass import getuser  # To get the name of the PC user
 from os import environ, getcwd
 
+
 def install_module(module):
     '''Installs the given module if the user allows to do so.
     Returns True or False depending on the confirmation.'''
@@ -22,7 +23,6 @@ to install it? [Y/n]\n")
             return False
         else:
             print("Please, select a valid option.")
-
 
 def start():
     '''The script inside of a function for easy calls, if needed'''
@@ -68,7 +68,7 @@ def start():
     # Let the user choose the editor
     print("[Nano|Vim|NeoVim|Gedit|Pluma]")
     editor = input("Choose your favorite text editor (It should be\
-already installed(:\n")
+already installed):\n")
     if editor.lower() == "neovim":
         editor = "nvim"
     with open("./data.env", "w") as data:
@@ -79,3 +79,4 @@ already installed(:\n")
 
 if __name__ == "__main__":
     start()
+    
