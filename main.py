@@ -34,7 +34,7 @@ def handle_command(data):
         del data[0]
 
         if method.lower() == "exit":
-            sure = input("Do you really want to log out? [Y/n]\n")
+            sure = input("Do you really want to log out? [Y/n] ")
             if sure.lower() in ["y", "yes"]:
                 print("Bye! ;D")
                 quit()
