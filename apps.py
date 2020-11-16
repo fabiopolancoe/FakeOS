@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import setup
 from random import randint
 from dotenv import load_dotenv
 load_dotenv()
@@ -29,13 +30,13 @@ def ls():
         print("Home is empty, fill it with anything you want :D")
 
 def new(filename):
-    if sys.platform.startswith() == 'win32':
+    if sys.platform == 'win32':
         os.system("type nul > " + ".\\home\\" + filename)
     else:
         subprocess.call(["touch", "./home/" + filename])
 
 def show(filename):
-    if sys.platform.startswith() == 'win32':
+    if sys.platform == 'win32':
         os.system('type ' + '.\\home\\' + filename)
     else:
         subprocess.call(["cat", "./home/" + filename])
@@ -49,30 +50,39 @@ def help(*method):
             print(command+": "+all_commands.get(command)+"\n")
 
 def pyrun(filename):
-    if sys.platform.startswith() == 'win32':
-        subprocess.call(["python", filename])
+    if sys.platform == 'win32':
+        os.system("python " + filename)
     else:
         subprocess.call(["python3", filename])
 
 def pyshell():
     print("")
-    if sys.platform.startswith() == 'win32':
-        subprocess.call("python")
+    if sys.platform == 'win32':
+        os.system("python")
     else:
         subprocess.call("python3")
     print("")
 
 def interactive():
     print("")
-    if sys.platform.startswith() == 'win32':
-        subprocess.call('ipython')
+    if sys.platform == 'win32':
+        os.system('ipython')
     else:
         subprocess.call("ipython3")
     print("")
 
 def edit(filename):
-    editor = os.getenv("TEXT_EDITOR")
-    subprocess.call([editor, "./home/" + filename])
+    try:
+    	editor = os.getenv("EDITOR")
+		if sys.platform == 'win32':
+	        os.system(editor + ' ' + filename)
+	    else:
+	        subprocess.call([editor, filename])
+	except:
+		if sys.platform == 'win32':
+	        os.system("start notepad.exe " + filename)
+	    else:
+		    subprocess.call(["nano", "./home/" + filename])
 
 def install():
-    print("Setup is not available for now, I'm working on it, sorry D:")
+    setup.start()
