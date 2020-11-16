@@ -12,7 +12,7 @@ A simple terminal **simulator** written in Python3.
   - IPython3
   - DotEnv
   - [**Art**](https://pypi.org/project/art/) module
-  
+ 
 ## Usage
 Run the _main.py_ file, you can execute `python3 main.py` on Linux/MacOS or `python main.py` on Windows.
 You will see the ASCII Art Text logo, a welcome message and the prompt, to get started, type _help_.

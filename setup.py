@@ -18,7 +18,7 @@ def start():
         else:
             print("You haven't chosen a correct option, I will install module by default...")
             pip.main(["install", "art"])
-    
+
     print("Checking if Dotenv module is installed...")
     try:
         from dotenv import load_dotenv
@@ -53,6 +53,8 @@ def start():
 
     print("Nano, Vim, Neovim, Notepad, Gedit")
     editor = input("Choose your favorite text editor (It should obviously be installed): ")
+    if editor == 'Neovim' or 'neovim':
+        editor = 'nvim' # Change name to executable of Neovim.
     data = open('./data.env', 'w')
     data.write("EDITOR = " + editor)
 
