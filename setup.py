@@ -59,8 +59,10 @@ def start():
     editor = input("Choose your favorite text editor (It should obviously be installed): ")
     if editor == 'Neovim' or 'neovim':
         editor = 'nvim' # Change name to executable of Neovim.
+    elif editor == "Notepad":
+        editor = "notepad.exe"
     data = open('./data.env', 'w')
-    data.write("EDITOR = " + editor)
+    data.write("EDITOR = " + editor.lower())
 
 
 if __name__ == "__main__":
