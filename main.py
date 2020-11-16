@@ -9,7 +9,7 @@ import signal
 try:
     from art import text2art
     print(text2art("FakeOS"))
-except ModuleNotFoundError, NameError:
+except ModuleNotFoundError:
     pass
 
 # The apps module is already included, but just in case...
@@ -36,7 +36,7 @@ def handle_command(data):
         method = data[0]
         del data[0]
         if method.lower() == "exit":
-            sure = input("Do you really want to log out? [Y/n]\n")
+            sure = input("Do you really want to log out? [Y/n]: ")
             if sure.lower() in ["y", "yes"]:
                 print("Bye! ;D")
                 quit()
@@ -56,7 +56,7 @@ def handle_command(data):
                     return True
             except:
                 print("Couldn't handle that command D:")
-                return False      
+                return False
     else:
         return False
 signal.signal(signal.SIGINT, signal_handler)

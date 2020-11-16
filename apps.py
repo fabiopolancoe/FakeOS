@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Each command's description
-all_commads = {
+all_commands = {
         "hello": "Prints \"Hello, World!\"",
         "numguess": "An awesome Guess-The-Number game",
         "ls": "Lists the files and directories inside of the home folder",
@@ -37,12 +37,12 @@ def numguess():
     number = randint(1, 10)
     while True:
         guess = int(input("I'm thinking of a number between 1 and 10, try\
-to guess it...\n")
+to guess it...\n"))
         if guess == number:
             print("Wow, you did it! :D")
             break
         else:
-        print("Oops! that isn't the number I'm thinking of D:")
+            print("Oops! that isn't the number I'm thinking of D:")
 
 def ls():
     home = os.listdir("./home")
