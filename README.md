@@ -12,6 +12,7 @@ A simple terminal **simulator** written in Python3.
   - Nano Editor
   - IPython3
   - [**Art**](https://pypi.org/project/art/) module
+  - pip3
  
 ## Usage
 We recommend to run `setup.py` script before using the program. But you can also run the program en then execute the `install` command.
