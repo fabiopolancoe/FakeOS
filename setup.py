@@ -55,7 +55,7 @@ def start():
     else:
         pass
 
-    print("Nano, Vim, Neovim, Notepad, Gedit")
+    print("Nano, Vim, Neovim, Notepad, Gedit, Pluma")
     editor = input("Choose your favorite text editor (It should obviously be installed): ")
     if editor == 'Neovim' or 'neovim':
         editor = 'nvim' # Change name to executable of Neovim.
