@@ -3,6 +3,7 @@
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/fabiopolancoe/fakeos.svg">
 <img alt="GitHub" src="https://img.shields.io/github/license/fabiopolancoe/fakeos.svg">
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/fabiopolancoe/fakeos.svg">
+<img alt="Made with Python3" src="https://img.shields.io/badge/built%20with-Python3-green.svg">
 
 A simple terminal **simulator** written in Python3.
 
