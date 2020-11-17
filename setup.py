@@ -73,8 +73,11 @@ def start():
     print("\n[Nano|Vim|NeoVim|Gedit|Pluma]")
     editor = input("Choose your favorite text editor (It should be already installed): ")
     if editor.lower() == "neovim":
-        editor = "nvim"
-    with open("./data.env", "w") as data:
+        if sys.platform.startswith("win32"):
+            editor = "nvim-qt"
+        else:
+            editor = "nvim"
+    with open("./.env", "w") as data:
         data.write(f"EDITOR={editor}")
 
     print("\nThe SetUp has ended. Please close and reopen your terminal to apply all changes. Have fun! :D")

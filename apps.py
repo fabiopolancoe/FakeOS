@@ -72,16 +72,25 @@ def help(method=False):
             print(f"{i}: {all_commands[i]}\n")
 
 def pyrun(filename):
-    os.system(f"python {filename}")  # Same command for all platforms
+    if sys.platform.startswith("win32"):
+        os.system(f"python {filename}")
+    else:
+        subprocess.call(["python3", filename])
 
 def pyshell():
     print("")
-    os.system("python")
+    if sys.platform.startswith("win32"):
+        os.system("python")
+    else:
+        subprocess.call("python3")
     print("")
 
 def interactive():
     print("")
-    os.system("ipython")
+    if sys.platform.startswith("win32"):
+        os.system('ipython')
+    else:
+        subprocess.call("ipython3")
     print("")
 
 def edit(filename):
