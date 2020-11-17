@@ -13,8 +13,7 @@ def install_module(module):
     '''Installs the given module if the user allows to do so.
     Returns True or False depending on the confirmation.'''
     while True:
-        conf = input("The {module} module is not installed, do you want\
-to install it? [Y/n]\n")
+        conf = input("The {module} module is not installed, do you want to install it? [Y/n]: ")
         if conf.lower() in ["y", "yes"]:
             print(f"Ok, installing the {module} module...")
             pip.main(["install", module])
@@ -47,36 +46,16 @@ def start():
     else:
         print("The python-dotenv module is installed.")
 
-    if sys.platform != 'win32': # Check the OS.
-        # Add FakeOS to PATH
-        conf = input("Do you want to add FakeOS to PATH? [Y/n]: ")
-        if conf.lower() in ["y", "yes"]:
-            try:
-                if "bash" in environ["SHELL"]:
-                    fname = ".bashrc"
-                elif "zsh" in environ["SHELL"]:
-                    fname = ".zshrc"
-                with open(f"/home/{getuser()}/{fname}", "a") as f:
-                    f.writelines(f"alias fakeos='python3 {getcwd()}/main.py'\
-\nexport FAKEOSHOME={getcwd()}")
-
-            except Exception as identifier:
-                print("Sorry, an exception occurred during the process.")
-                print(f"Exception Details: {identifier}")
-
-        elif conf.lower() in ["n", "no", "nope"]:
-            print("Ok, FakeOS will not be added to PATH.")
-    else:
-        pass # Do not add to PATH if OS is Windows.
 
     # Let the user choose the editor
-    print("\n[Nano|Vim|NeoVim|Gedit|Pluma]")
+    print("\n[Nano|Vim|Neovim|Notepad|VSCode]")
     editor = input("Choose your favorite text editor (It should be already installed): ")
     if editor.lower() == "neovim":
-        if sys.platform.startswith("win32"):
-            editor = "nvim-qt"
-        else:
-            editor = "nvim"
+        editor = "nvim-qt"
+    if editor.lower() == "vscode":
+        editor = "code"
+    if editor.lower() == "notepad":
+        editor = "notepad.exe"
     with open("./.env", "w") as data:
         data.write(f"EDITOR={editor}")
 

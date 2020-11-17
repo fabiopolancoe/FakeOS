@@ -9,8 +9,7 @@ from datetime import datetime, date
 # The only purpose of this function is to save some lines in the main file
 def ask_for_logging():
     while True:
-        log_conf = input("Do you want to create log files about the\
-program's excecution? [Y/n/exit]\n")
+        log_conf = input("Do you want to create log files about the program's excecution? [Y/n/exit]: ")
         if log_conf.lower() in ("y", "yes", "1"):
             return True
         elif log_conf.lower() in ("n", "no", "2", "0"):
