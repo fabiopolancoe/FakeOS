@@ -77,7 +77,7 @@ def start():
     with open("./data.env", "w") as data:
         data.write(f"EDITOR={editor}")
 
-    print("\nThe SetUp has ended. Have fun! :D")
+    print("\nThe SetUp has ended. Please close and reopen your terminal to apply all changes. Have fun! :D")
 
 
 if __name__ == "__main__":
