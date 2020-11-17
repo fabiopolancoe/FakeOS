@@ -25,7 +25,8 @@ all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "pyrun": "Executes a python3 file, place the file inside the home folder and type 'pyrun [filename]', i.e. 'pyrun hello.py'",
                 "interactive": "Opens an interactive python3 shell, requires 'ipython3' installed",
                 "edit": "Edit or create files, type 'edit [filename]', i.e. 'edit note.txt', requires a text editor installed",
-                "install": "Activates setup script"}
+                "install": "Activates setup script",
+                "clear": "Clears the console"}
 
 # Definition of the commands
 def hello():
@@ -54,7 +55,7 @@ def new(filename):
     if sys.platform.startswith("win32"):
         os.system(f"type nul > ./home/{filename}")
     else:
-        subprocess.call(["cat", f"./home/{filename}"])
+        subprocess.call(["touch", f"./home/{filename}"])
 
 def show(filename):
     with open(f"./home/{filename}", "r") as f:
@@ -96,6 +97,11 @@ def edit(filename):
         else:
             subprocess.call(["nano", f"./home/{filename}"])
 
+def clear():
+    if sys.platform.startswith("win32"):
+        os.system("cls")
+    else:
+        subprocess.call(["tput reset"])
+
 def install():
     setup.start()
-

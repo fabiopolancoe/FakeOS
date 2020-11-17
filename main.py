@@ -12,14 +12,7 @@ try:
 except ModuleNotFoundError:
     pass
 
-# The apps module is already included, but just in case...
-try:
-    import apps
-except ModuleNotFoundError:
-    print("The required module \"apps\" was not found, exiting...")
-    quit()
 from getpass import getuser  # To get the current PC user.
-
 
 print("Welcome to FakeOS!")  # Welcome message, printed always.
 
@@ -47,12 +40,13 @@ def handle_command(data):
                 print("You did not choose a correct option.")
                 return False
         else:
+            import apps
             try:
                 if data:
                     eval("apps." + method + "(*data)")
                     return True
                 else:
-                    eval("apps." + method())
+                    eval("apps." + method)()
                     return True
             except:
                 print("Couldn't handle that command D:")
