@@ -35,8 +35,7 @@ def hello():
 def numguess():
     number = randint(1, 10)
     while True:
-        guess = int(input("I'm thinking of a number between 1 and 10, try\
-to guess it...\n"))
+        guess = int(input("I'm thinking of a number between 1 and 10, try to guess it > "))
         if guess == number:
             print("Wow, you did it! :D")
             break
