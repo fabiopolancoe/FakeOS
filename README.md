@@ -11,7 +11,6 @@ A simple terminal **simulator** written in Python3.
 - There are some optional dependencies:
   - [**Nano**](https://www.nano-editor.org/) Editor
   - [**IPython**](https://pypi.org/project/ipython/)
-  - [**DotEnv**](https://pypi.org/project/python-dotenv/)
   - [**Art**](https://pypi.org/project/art/)
   - [**Pip**](https://pypi.org/project/pip/)
  
