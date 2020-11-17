@@ -9,11 +9,11 @@ A simple terminal **simulator** written in Python3.
 ## Setup
 - The only dependence of this project is [**DotEnv**](https://pypi.org/project/dotenv/) module.
 - There are some optional dependencies:
-  - Nano Editor
-  - IPython3
+  - [**Nano**](https://www.nano-editor.org/) Editor
+  - [**IPython**](https://pypi.org/project/ipython/)
   - [**DotEnv**](https://pypi.org/project/python-dotenv/)
-  - [**Art**](https://pypi.org/project/art/) module
-  - pip3
+  - [**Art**](https://pypi.org/project/art/)
+  - [**Pip**](https://pypi.org/project/pip/)
  
 ## Usage
 We recommend to run `setup.py` script before using the program. But you can also run the program en then execute the `install` command.
