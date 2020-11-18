@@ -2,6 +2,7 @@
 
 # Set Up module, originally created by FabioPolancoE and Sebastian-Byte
 # Edited by Suaj
+# Adapted to Windows by Sebastian-byte and maintainer
 
 import pip  # To install missing modules, if the user allows us
 import sys  # To check actual OS

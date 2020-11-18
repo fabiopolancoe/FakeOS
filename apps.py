@@ -2,11 +2,11 @@
 
 # Apps module originally created by Sebastian-Byte, FabioPolancoE and FRostri
 # Edited by Suaj
+# Ported to Windows by Sebastian-Byte
 
 import os
 import sys
 import setup
-import subprocess
 from random import randint
 from dotenv import load_dotenv
 
@@ -43,7 +43,7 @@ def numguess():
             print("Oops! that isn't the number I'm thinking of D:")
 
 def ls():
-    home = os.listdir(".\\home")
+    home = os.listdir(".\\home\\")
     if home:
         for i in home:
             print(i)

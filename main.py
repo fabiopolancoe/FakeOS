@@ -2,6 +2,7 @@
 
 # Main module, originally created by FabioPolancoE
 # Edited by Suaj
+# Ported to Windows by Sebastian-byte
 
 import signal
 
@@ -59,4 +60,3 @@ signal.signal(signal.SIGINT, signal_handler)
 while True:
     command = input(f"[{getuser()}@FakeOS]$ ")
     handle_command(command.split())
-
