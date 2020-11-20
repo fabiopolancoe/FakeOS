@@ -8,7 +8,7 @@
 A simple terminal **simulator** written in Python3.
 
 ## Setup
-- The only dependence of this project is [**DotEnv**](https://pypi.org/project/dotenv/) module.
+- The only dependence of this project is [**Dotenv**](https://pypi.org/project/python-dotenv/) module.
 - There are some optional dependencies:
   - A Text Editor
   - [**IPython**](https://pypi.org/project/ipython/)
