@@ -5,6 +5,7 @@
 # Ported to Windows by Sebastian-byte
 
 import signal
+import sys
 
 # Print the name, if the text2art module is found.
 try:
@@ -33,7 +34,7 @@ def handle_command(data):
             sure = input("Do you really want to log out? [Y/n]: ")
             if sure.lower() in ["y", "yes"]:
                 print("Bye! ;D")
-                quit()
+                sys.exit()
 
             elif sure.lower() in ["n", "no", "nope"]:
                 return False
