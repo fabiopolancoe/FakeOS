@@ -84,7 +84,7 @@ def edit(filename):
     try:
         editor = os.getenv("EDITOR")
         os.system(f"{editor} {filename}")
-    except:  # There should be an specific exception here
+    except OSError:
         os.system(f"start notepad.exe {filename}")
 
 def clear():
