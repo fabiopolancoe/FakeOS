@@ -54,7 +54,7 @@ def new(filename):
     os.system(f"type nul > .\\home\\{filename}")
 
 def show(filename):
-    with open(f".\\home\\{filename}", "r") as f:
+    with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
         fcontent = f.readlines()
     for i in fcontent:
         print(i, end='')  # Each line already has the \n char at the end
@@ -83,9 +83,9 @@ def interactive():
 def edit(filename):
     try:
         editor = os.getenv("EDITOR")
-        os.system(f"{editor} {filename}")
+        os.system(f"{editor} .\\home\\{filename}")
     except OSError:
-        os.system(f"start notepad.exe {filename}")
+        os.system(f"start notepad .\\home\\{filename}")
 
 def clear():
     os.system("cls")
