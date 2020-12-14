@@ -2,7 +2,7 @@
 
 # Set Up module, originally created by FabioPolancoE and Sebastian-Byte
 # Edited by Suaj
-# Adapted to Windows by Sebastian-byte and maintainer
+# Ported to Windows by Sebastian-byte
 
 # import pip ## Acording to pip is recommended using "-m pip" because this module is deprecated.
 import sys  # To check actual OS

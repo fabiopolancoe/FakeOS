@@ -1,8 +1,8 @@
 # Editors
-.vscode
-.idea
-.vim
-.atom
+.vscode/
+.idea/
+.vim/
+.atom/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

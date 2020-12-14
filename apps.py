@@ -54,7 +54,7 @@ def new(filename):
     os.system(f"type nul > .\\home\\{filename}")
 
 def show(filename):
-    with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
+    with open(f"./home/{filename}", "r") as f:  # In Python using / is correct, not in os.system().
         fcontent = f.readlines()
     for i in fcontent:
         print(i, end='')  # Each line already has the \n char at the end
@@ -68,7 +68,7 @@ def help(method=False):
             print(f"{i}: {all_commands[i]}\n")
 
 def pyrun(filename):
-    os.system(f"python {filename}")
+    os.system(f"python .\\home\\{filename}")
 
 def pyshell():
     print("")
