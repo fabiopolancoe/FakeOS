@@ -1,4 +1,4 @@
-#!/usr/bin/env/ python3
+#!/usr/bin/python3
 
 # Apps module originally created by Sebastian-Byte, FabioPolancoE and FRostri
 # Edited by Suaj
