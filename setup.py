@@ -17,7 +17,7 @@ def install_module(module):
         conf = input(f"The {module} module is not installed, do you want to install it? [Y/n]: ")
         if conf.lower() in ["y", "yes"]:
             print(f"Ok, installing the {module} module...")
-            system(f'python -m pip install {module}')
+            system(f"python -m pip install {module}")
             return True
         elif conf.lower() in ["n", "no", "nope"]:
             print(f"Ok, the {module} module will not be installed.")
@@ -34,7 +34,7 @@ def start():
     try:
         from art import text2art
     except ModuleNotFoundError:
-        install_module('art')
+        install_module("art")
     else:
         print("The art module is installed.")
 
@@ -43,7 +43,7 @@ def start():
     try:
         import dotenv
     except ModuleNotFoundError:
-        install_module('python-dotenv')
+        install_module("python-dotenv")
     else:
         print("The python-dotenv module is installed.")
 

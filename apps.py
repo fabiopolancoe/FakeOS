@@ -21,10 +21,11 @@ all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "show": "Prints the contents of a file",
                 "help": "Shows information about a available commands",
                 "exit": "Stops the execution of FakeOS",
-                "pyshell": "Opens an embedded python3 shell",
-                "pyrun": "Executes a python3 file, place the file inside the home folder and type 'pyrun [filename]', i.e. 'pyrun hello.py'",
-                "interactive": "Opens an interactive python3 shell, requires 'ipython' installed",
+                "pyshell": "Opens an embedded Python shell",
+                "pyrun": "Executes a Python file, place the file inside the home folder and type 'pyrun [filename]', i.e. 'pyrun hello.py'",
+                "interactive": "Opens an interactive python3 shell, requires 'iPython' installed",
                 "edit": "Edit or create files, type 'edit [filename]', i.e. 'edit note.txt', requires a text editor installed",
+                "delete": "Deletes a file, type 'delete [filename], i.e. 'delete file.txt'",
                 "install": "Activates setup script",
                 "clear": "Clears the console"}
 
@@ -51,13 +52,19 @@ def ls():
         print("The home folder is empty.")
 
 def new(filename):
-    os.system(f"type nul > .\\home\\{filename}")
+    if ".." in filename:
+        print("You can't create files outside of the Home folder!")
+    else:
+        os.system(f"type nul > .\\home\\{filename}")
 
 def show(filename):
-    with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
-        fcontent = f.readlines()
-    for i in fcontent:
-        print(i, end='')  # Each line already has the \n char at the end
+    if ".." in filename:
+        print("You can't view files outside of the Home folder!")
+    else:
+        with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
+            fcontent = f.readlines()
+        for i in fcontent:
+            print(i, end='')  # Each line already has the \n char at the end
 
 def help(method=False):
     if method:
@@ -68,7 +75,9 @@ def help(method=False):
             print(f"{i}: {all_commands[i]}\n")
 
 def pyrun(filename):
-    os.system(f"python {filename}")
+    print("")
+    os.system(f"python .\\home\\{filename}")
+    print("")
 
 def pyshell():
     print("")
@@ -77,15 +86,24 @@ def pyshell():
 
 def interactive():
     print("")
-    os.system('ipython')
+    os.system("ipython")
     print("")
 
 def edit(filename):
-    try:
-        editor = os.getenv("EDITOR")
-        os.system(f"{editor} .\\home\\{filename}")
-    except OSError:
-        os.system(f"start notepad .\\home\\{filename}")
+    if ".." in filename:
+        print("You can't edit files outside of the Home folder!")
+    else:
+        try:
+            editor = os.getenv("EDITOR")
+            os.system(f"{editor} .\\home\\{filename}")
+        except OSError:
+            os.system(f"start notepad .\\home\\{filename}")
+
+def delete(filename):
+    if ".." in filename:
+        print("You can't delete files outside of the Home folder!")
+    else:
+        os.system(f"del .\\home\\{filename}")
 
 def clear():
     os.system("cls")
