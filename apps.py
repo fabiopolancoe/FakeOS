@@ -50,10 +50,6 @@ class func:
             else:
                 print("Oops! that isn't the number I'm thinking of D:")
 
-    def cd(self, filename):
-        os.system(f"cd .\\home\\{filename}")
-        self.path = ".\\home\\" + filename
-
     def ls(self):
         home = os.listdir(".\\home\\")
         if home:
@@ -124,4 +120,6 @@ class func:
         os.system("cls")
 
     def install(self):
+        print("")
         setup.start()
+        print("")

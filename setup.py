@@ -53,18 +53,18 @@ def start():
     print("\n[Vim|Neovim|Notepad|VSCode]")
     editor = input(
         "Choose your favorite text editor (It should be already installed): ")
+    editor = editor.lower()
 
-    if editor.lower() == "neovim":
+    if editor == "neovim":
         editor = "nvim"
-    if editor.lower() == "vscode":
+    if editor == "vscode":
         editor = "code"
-    if editor.lower() == "notepad":
-        editor = "notepad"
 
     with open("./.env", "w") as data:
         data.write(f"EDITOR={editor}")
 
-    print("\nThe Setup has ended. Please close and reopen your terminal/console to apply all changes. Have fun! :D")
+    print("\nThe Setup has ended. \
+Please close and reopen your terminal/console to apply all changes. Have fun! :D")
 
 
 if __name__ == "__main__":

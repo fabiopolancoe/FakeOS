@@ -21,7 +21,7 @@ print("Welcome to FakeOS!")  # Welcome message, printed always.
 
 def signal_handler(signal, frame):
     print("\nBye ;D!")
-    quit()
+    sys.exit()
 
 
 def handle_command(data):
@@ -32,18 +32,19 @@ def handle_command(data):
         del data[0]
         if method.lower() == "exit":
             sure = input("Do you really want to logout? [Y/n]: ")
-            if sure.lower() in ["y", "yes"]:
+            sure = sure.lower()
+            if sure in ["y", "yes", "", " "]:
                 print("Bye! ;D")
-                sys.exit()
+                sys.exit(0)
 
-            elif sure.lower() in ["n", "no", "nope"]:
+            elif sure in ["n", "no", "nope"]:
                 return False
             else:
                 print("You did not choose a correct option.")
                 return False
         else:
-            import apps
-            app = apps.func()
+            from apps import func
+            app = func()
             try:
                 if data:
                     eval("app." + method + "(*data)")
