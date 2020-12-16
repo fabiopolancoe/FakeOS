@@ -14,7 +14,8 @@ def install_module(module):
     '''Installs the given module if the user allows to do so.
     Returns True or False depending on the confirmation.'''
     while True:
-        conf = input(f"The {module} module is not installed, do you want to install it? [Y/n]: ")
+        conf = input(
+            f"The {module} module is not installed, do you want to install it? [Y/n]: ")
         if conf.lower() in ["y", "yes"]:
             print(f"Ok, installing the {module} module...")
             system(f"python -m pip install {module}")
@@ -24,6 +25,7 @@ def install_module(module):
             return False
         else:
             print("Please, select a valid option.")
+
 
 def start():
     '''The script inside of a function for easy calls, if needed'''
@@ -47,10 +49,10 @@ def start():
     else:
         print("The python-dotenv module is installed.")
 
-
     # Let the user choose the editor
     print("\n[Vim|Neovim|Notepad|VSCode]")
-    editor = input("Choose your favorite text editor (It should be already installed): ")
+    editor = input(
+        "Choose your favorite text editor (It should be already installed): ")
 
     if editor.lower() == "neovim":
         editor = "nvim"

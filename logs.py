@@ -1,4 +1,4 @@
-#!usr/bin/env python3
+#!usr/bin/python3
 
 # Logging module, originally created by Suaj commited for FakeOS
 
@@ -9,7 +9,8 @@ from datetime import datetime, date
 # The only purpose of this function is to save some lines in the main file
 def ask_for_logging():
     while True:
-        log_conf = input("Do you want to create log files about the program's excecution? [Y/n/exit]: ")
+        log_conf = input(
+            "Do you want to create log files about the program's excecution? [Y/n/exit]: ")
         if log_conf.lower() in ("y", "yes", "1"):
             return True
         elif log_conf.lower() in ("n", "no", "2", "0"):
@@ -22,6 +23,8 @@ def ask_for_logging():
 
 # When the user turns off logging, we simply convert every call to the
 # functions into nothing so we don't have to change the code.
+
+
 class Logging:
     def __init__(self, conf, verbose=False, path=f"{date.today()} Log.txt"):
         self.conf = conf
@@ -68,6 +71,7 @@ class Logging:
                 print(self.text)
         else:
             pass
+
 
 # Debug
 if __name__ == "__main__":

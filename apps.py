@@ -30,6 +30,7 @@ all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "install": "Activates setup script",
                 "clear": "Clears the console"}
 
+
 class func:
     def __init__(self):
         pass
@@ -41,7 +42,8 @@ class func:
     def numguess(self):
         number = randint(1, 10)
         while True:
-            guess = int(input("I'm thinking of a number between 1 and 10, try to guess it > "))
+            guess = int(
+                input("I'm thinking of a number between 1 and 10, try to guess it > "))
             if guess == number:
                 print("Wow, you did it! :D")
                 break
@@ -70,7 +72,8 @@ class func:
         if ".." in filename:
             print("You can't view files outside of the Home folder!")
         else:
-            with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
+            # In Python using / is correct, not in os.system().
+            with open(f"./home/{filename}", "r") as f:
                 fcontent = f.readlines()
             for i in fcontent:
                 print(i, end='')  # Each line already has the \n char at the end

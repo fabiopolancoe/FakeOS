@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 # Main module, originally created by FabioPolancoE
 # Edited by Suaj
@@ -56,6 +56,8 @@ def handle_command(data):
                 return False
     else:
         return False
+
+
 signal.signal(signal.SIGINT, signal_handler)
 
 # User input

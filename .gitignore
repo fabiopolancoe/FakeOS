@@ -28,6 +28,7 @@ lib/
 lib64/
 share/python-wheels/
 *.egg-info/
+pyproject.toml
 .installed.cfg
 *.egg
 MANIFEST
