@@ -1,62 +1,64 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
-# Main module, originally created by FabioPolancoE
+# Main module, originally coded by FabioPolancoE, Sebastian-Byte
+# and FRostri.
 # Edited by Suaj
+# NOTE: Documentation will be improved later
 
-import signal
+import os
+import sys
+from apps import *
+from getpass import getuser
+from setup import start_setup
 
-# Print the name, if the text2art module is found.
 try:
-    from art import text2art
-    print(text2art("FakeOS"))
+  from art import text2art
 except ModuleNotFoundError:
-    pass
+  pass
+else:
+  print(text2art("FakeOS"))
 
-from getpass import getuser  # To get the current PC user.
+print("Welcome to FakeOS!")
 
-print("Welcome to FakeOS!")  # Welcome message, printed always.
+# To avoid possible errors with other modules, the exit function is handled here
 
-
-def signal_handler(signal, frame):
-    print("\nBye ;D!")
-    quit()
-
-
-def handle_command(data):
-    '''Handles the command the user entered. If the command is not
-    processed for any reason, the function returns False.'''
-    if data:
-        method = data[0]
-        del data[0]
-        if method.lower() == "exit":
-            sure = input("Do you really want to log out? [Y/n]: ")
-            if sure.lower() in ["y", "yes"]:
-                print("Bye! ;D")
-                quit()
-
-            elif sure.lower() in ["n", "no", "nope"]:
-                return False
-            else:
-                print("You did not choose a correct option.")
-                return False
-        else:
-            import apps
-            try:
-                if data:
-                    eval("apps." + method + "(*data)")
-                    return True
-                else:
-                    eval("apps." + method)()
-                    return True
-            except:
-                print("Couldn't handle that command D:")
-                return False
+def exit():
+  while True:
+    op = input("Are you sure you want to exit? [Y/n]: ")
+    op = op.lower()
+    if op in ["y", "yes", "", " "]:
+      sys.exit(0)
+    elif op in ["n", "no", "nope"]:
+      break
     else:
-        return False
-signal.signal(signal.SIGINT, signal_handler)
+      print("Please, enter a valid option.")
 
-# User input
+all_commands = {
+  "hello": hello,
+  "numguess": numguess,
+  "ls": ls,
+  "new": new,
+  "show": show,
+  "help": help_fkos,
+  "pyshell": pyshell,
+  "pyrun": pyrun,
+  "interactive": interactive,
+  "edit": edit,
+  "install": start_setup,
+  "clear": clear,
+  "exit": exit,
+}
+
+# Get input with a BASH style
 while True:
-    command = input(f"[{getuser()}@FakeOS]$ ")
-    handle_command(command.split())
+  op = input(f"[{getuser()}@FakeOS]$ ")
+  op = op.lower()
 
+  # Call the function. Argument support will be added in short.
+  try:
+    all_commands[op]()
+  except KeyError:
+    print(f"Whoops! The command \"{op}\" does not exist.")
+  except Exception as id:
+    print(f"""An exception occurred during the process.
+Exception details: {id}""")

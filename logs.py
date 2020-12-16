@@ -1,4 +1,4 @@
-#!usr/bin/env python3
+#!/usr/bin/python3
 
 # Logging module, originally created by Suaj commited for FakeOS
 
