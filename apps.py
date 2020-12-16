@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 # Each command's description
 all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "numguess": "An awesome Guess-The-Number Game",
@@ -29,84 +30,95 @@ all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "install": "Activates setup script",
                 "clear": "Clears the console"}
 
-# Definition of the commands
-def hello():
-    print("Hello, World!")
+class func:
+    def __init__(self):
+        pass
 
-def numguess():
-    number = randint(1, 10)
-    while True:
-        guess = int(input("I'm thinking of a number between 1 and 10, try to guess it > "))
-        if guess == number:
-            print("Wow, you did it! :D")
-            break
+    # Definition of the commands
+    def hello(self):
+        print("Hello, World!")
+
+    def numguess(self):
+        number = randint(1, 10)
+        while True:
+            guess = int(input("I'm thinking of a number between 1 and 10, try to guess it > "))
+            if guess == number:
+                print("Wow, you did it! :D")
+                break
+            else:
+                print("Oops! that isn't the number I'm thinking of D:")
+
+    def cd(self, filename):
+        os.system(f"cd .\\home\\{filename}")
+        self.path = ".\\home\\" + filename
+
+    def ls(self):
+        home = os.listdir(".\\home\\")
+        if home:
+            for i in home:
+                print(i)
+        elif not home or len(home) == 0:
+            print("The home folder is empty.")
+
+    def new(self, filename):
+        if ".." in filename:
+            print("You can't create files outside of the Home folder!")
         else:
-            print("Oops! that isn't the number I'm thinking of D:")
+            os.system(f"type nul > .\\home\\{filename}")
 
-def ls():
-    home = os.listdir(".\\home\\")
-    if home:
-        for i in home:
-            print(i)
-    elif not home or len(home) == 0:
-        print("The home folder is empty.")
+    def show(self, filename):
+        if ".." in filename:
+            print("You can't view files outside of the Home folder!")
+        else:
+            with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
+                fcontent = f.readlines()
+            for i in fcontent:
+                print(i, end='')  # Each line already has the \n char at the end
 
-def new(filename):
-    if ".." in filename:
-        print("You can't create files outside of the Home folder!")
-    else:
-        os.system(f"type nul > .\\home\\{filename}")
+    def help(self, method=False):
+        if method:
+            print(all_commands[method])
+        else:
+            print("All available commands:\n")
+            for i in all_commands.keys():
+                print(f"{i}: {all_commands[i]}\n")
 
-def show(filename):
-    if ".." in filename:
-        print("You can't view files outside of the Home folder!")
-    else:
-        with open(f"./home/{filename}", "r") as f: # In Python using / is correct, not in os.system().
-            fcontent = f.readlines()
-        for i in fcontent:
-            print(i, end='')  # Each line already has the \n char at the end
+    def pyrun(self, filename):
+        if ".." in filename:
+            print("You can't run files outside the Home folder!")
+        else:
+            print("")
+            os.system(f"python .\\home\\{filename}")
+            print("")
 
-def help(method=False):
-    if method:
-        print(all_commands[method])
-    else:
-        print("All available commands:\n")
-        for i in all_commands.keys():
-            print(f"{i}: {all_commands[i]}\n")
+    def pyshell(self):
+        print("")
+        os.system("python")
+        print("")
 
-def pyrun(filename):
-    print("")
-    os.system(f"python .\\home\\{filename}")
-    print("")
+    def interactive(self):
+        print("")
+        os.system("ipython")
+        print("")
 
-def pyshell():
-    print("")
-    os.system("python")
-    print("")
+    def edit(self, filename):
+        if ".." in filename:
+            print("You can't edit files outside of the Home folder!")
+        else:
+            try:
+                editor = os.getenv("EDITOR")
+                os.system(f"{editor} .\\home\\{filename}")
+            except OSError:
+                os.system(f"start notepad .\\home\\{filename}")
 
-def interactive():
-    print("")
-    os.system("ipython")
-    print("")
+    def delete(self, filename):
+        if ".." in filename:
+            print("You can't delete files outside of the Home folder!")
+        else:
+            os.system(f"del .\\home\\{filename}")
 
-def edit(filename):
-    if ".." in filename:
-        print("You can't edit files outside of the Home folder!")
-    else:
-        try:
-            editor = os.getenv("EDITOR")
-            os.system(f"{editor} .\\home\\{filename}")
-        except OSError:
-            os.system(f"start notepad .\\home\\{filename}")
+    def clear(self):
+        os.system("cls")
 
-def delete(filename):
-    if ".." in filename:
-        print("You can't delete files outside of the Home folder!")
-    else:
-        os.system(f"del .\\home\\{filename}")
-
-def clear():
-    os.system("cls")
-
-def install():
-    setup.start()
+    def install(self):
+        setup.start()

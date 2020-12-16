@@ -43,12 +43,13 @@ def handle_command(data):
                 return False
         else:
             import apps
+            app = apps.func()
             try:
                 if data:
-                    eval("apps." + method + "(*data)")
+                    eval("app." + method + "(*data)")
                     return True
                 else:
-                    eval("apps." + method)()
+                    eval("app." + method + "()")
                     return True
             except:
                 print("Couldn't handle that command D:")
