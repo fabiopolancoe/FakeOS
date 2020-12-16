@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 # Main module, originally created by FabioPolancoE
 # Edited by Suaj

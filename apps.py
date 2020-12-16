@@ -13,7 +13,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 # Each command's description
 all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "numguess": "An awesome Guess-The-Number Game",
