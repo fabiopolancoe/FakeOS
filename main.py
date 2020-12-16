@@ -3,9 +3,6 @@
 # Main module, originally created by FabioPolancoE
 # Edited by Suaj
 
-Fabio si estás escribiendo en la terminal no veo nada, está todo bugeado
-Solo veo que se mueve el cursor pero los caracteres son un desastre
-
 import signal
 
 # Print the name, if the text2art module is found.
