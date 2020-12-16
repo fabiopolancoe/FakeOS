@@ -85,31 +85,19 @@ def pyshell():
     print("")
 
 def interactive():
-    print("")
-    if sys.platform.startswith("win32"):
-        os.system('ipython')
-    else:
-        subprocess.call("ipython3")
-    print("")
+  print("")
+  subprocess.run("ipython3")
+  print("")
 
 def edit(filename):
-    try:
-        editor = os.getenv("EDITOR")
-        if sys.platform.startswith("win32"):
-            os.system(f"{editor} {filename}")
-        else:
-            subprocess.call([editor, filename])
-    except:  # There should be an specific exception here
-        if sys.platform.startswith("win32"):
-            os.system(f"start notepad.exe {filename}")
-        else:
-            subprocess.call(["nano", f"./home/{filename}"])
+  try:
+    editor = os.getenv("EDITOR")
+    subprocess.run([editor, f"./home/{filename}"])
+  except OSError:
+    subprocess.run(["nano", f"./home/{filename}"])
 
 def clear():
-    if sys.platform.startswith("win32"):
-        os.system("cls")
-    else:
-        subprocess.call(["tput reset"])
+  subprocess.run(["tput", "reset"])
 
 def install():
-    setup.start()
+  setup.start()
