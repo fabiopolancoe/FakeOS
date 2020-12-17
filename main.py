@@ -21,7 +21,7 @@ print("Welcome to FakeOS!")  # Welcome message, printed always.
 
 def signal_handler(signal, frame):
     print("\nBye ;D!")
-    sys.exit()
+    sys.exit(0)
 
 
 def handle_command(data):

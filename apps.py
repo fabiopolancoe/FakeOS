@@ -54,7 +54,7 @@ class func:
                 print("Oops! that isn't the number I'm thinking of D:")
 
     def ls(self):
-        home = f"{os.getcwd()}\\home\\"
+        home = f"{os.getcwd()}\\home"
         if os.path.isdir(home):
             if len(os.listdir(home)) == 0:
                 print("The home folder is empty.")
@@ -127,7 +127,7 @@ class func:
             if os.path.exists(f".\\home\\{filename}"):
                 os.remove(f".\\home\\{filename}")
             else:
-                print("That file doesn't exist!")
+                print("Looks like that file doesn't exist!")
 
     def clear(self):
         subprocess.run("cls", shell=True)
