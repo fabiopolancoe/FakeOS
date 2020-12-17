@@ -28,6 +28,8 @@ lib/
 lib64/
 share/python-wheels/
 *.egg-info/
+poetry.lock
+pyproject.toml
 .installed.cfg
 *.egg
 MANIFEST
