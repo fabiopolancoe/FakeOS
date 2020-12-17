@@ -7,6 +7,7 @@
 import os
 import sys
 import setup
+import subprocess
 from random import randint
 from dotenv import load_dotenv
 
@@ -23,9 +24,11 @@ all_commands = {"hello": "A simple command that prints 'Hello World!'",
                 "help": "Shows information about a available commands",
                 "exit": "Stops the execution of FakeOS",
                 "pyshell": "Opens an embedded Python shell",
-                "pyrun": "Executes a Python file, place the file inside the home folder and type 'pyrun [filename]', i.e. 'pyrun hello.py'",
+                "pyrun": "Executes a Python file, place the \
+file inside the home folder and type 'pyrun [filename]', i.e. 'pyrun hello.py'",
                 "interactive": "Opens an interactive python3 shell, requires 'iPython' installed",
-                "edit": "Edit or create files, type 'edit [filename]', i.e. 'edit note.txt', requires a text editor installed",
+                "edit": "Edit or create files, type 'edit [filename]', i.e. 'edit note.txt', \
+requires a text editor installed",
                 "delete": "Deletes a file, type 'delete [filename], i.e. 'delete file.txt'",
                 "install": "Activates setup script",
                 "clear": "Clears the console"}
@@ -51,24 +54,31 @@ class func:
                 print("Oops! that isn't the number I'm thinking of D:")
 
     def ls(self):
-        home = os.listdir(".\\home\\")
-        if home:
-            for i in home:
-                print(i)
-        elif not home or len(home) == 0:
-            print("The home folder is empty.")
+        home = f"{os.getcwd()}\\home"
+        if os.path.isdir(home):
+            if len(os.listdir(home)) == 0:
+                print("The home folder is empty.")
+            else:
+                for i in os.listdir(home):
+                    print(i)
+        else:
+            print("Whoops, looks like the home folder doesn't exist!")
 
     def new(self, filename):
         if ".." in filename:
             print("You can't create files outside of the Home folder!")
         else:
-            os.system(f"type nul > .\\home\\{filename}")
+            try:
+                f = open(f"./home/{filename}", "x")
+                f.close()
+            except FileExistsError:
+                print("That file already exists!")
 
     def show(self, filename):
         if ".." in filename:
             print("You can't view files outside of the Home folder!")
         else:
-            # In Python using / is correct, not in os.system().
+            # In Python using / is correct, not in the Console.
             with open(f"./home/{filename}", "r") as f:
                 fcontent = f.readlines()
             for i in fcontent:
@@ -92,12 +102,12 @@ class func:
 
     def pyshell(self):
         print("")
-        os.system("python")
+        subprocess.run("python", shell=True)
         print("")
 
     def interactive(self):
         print("")
-        os.system("ipython")
+        subprocess.run("ipython", shell=True)
         print("")
 
     def edit(self, filename):
@@ -106,18 +116,18 @@ class func:
         else:
             try:
                 editor = os.getenv("EDITOR")
-                os.system(f"{editor} .\\home\\{filename}")
+                subprocess.run([editor, f".\\home\\{filename}"], shell=True)
             except OSError:
-                os.system(f"start notepad .\\home\\{filename}")
+                subprocess.run([editor, f".\\home\\{filename}"], shell=True)
 
     def delete(self, filename):
         if ".." in filename:
             print("You can't delete files outside of the Home folder!")
         else:
-            os.system(f"del .\\home\\{filename}")
+            subprocess.run(["del", f".\\home\\{filename}"], shell=True)
 
     def clear(self):
-        os.system("cls")
+        subprocess.run("cls", shell=True)
 
     def install(self):
         print("")
