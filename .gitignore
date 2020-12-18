@@ -28,11 +28,11 @@ lib/
 lib64/
 share/python-wheels/
 *.egg-info/
+poetry.lock
+pyproject.toml
 .installed.cfg
 *.egg
 MANIFEST
-poetry.lock
-pyproject.toml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
