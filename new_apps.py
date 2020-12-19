@@ -6,10 +6,17 @@
 import os, sys, subprocess, shutil, pickle
 from random import randint  # For the "numguess" game
 
+try: # For coloring text (This is a own made library).
+    from ColorText import ColorText
+    color = ColorText()
+    textcolor = True
+except ModuleNotFoundError: # ColorText should be installed by the setup, but just in case. 
+    textcolor = False
+
 
 class apps:
     def __init__(self):
-        # Change this later
+        # TODO: Change this
         self.home = f"{os.getcwd()}/home"
 
     # Decorator funcion used to check if the user is trying to
@@ -82,10 +89,14 @@ thinking of.")
             else:
                 print("Files and directories in the home folder: ")
                 for i in os.listdir(self.home):
-                    if os.path.isfile(i):
+                    if os.path.isfile(f"{self.home}/{i}"):
                         print(f"{i} (File)")
-                    elif os.path.isdir(i):
-                        print(f"{i} (Directory)")
+                    elif os.path.isdir(f"{self.home}/{i}"):
+                        self.acdir = f"{i}"
+                        if textcolor is True:
+                            print(color.blue(f"{i} (Directory)"))
+                        else:
+                            print(f"{i} (Directory)")
                     else:
                         print(f"{i} (???)")
         else:
@@ -98,7 +109,11 @@ doesn't exist!")
         if os.path.isfile(f"{self.home}/{self.fname}"):
             print("Whoops, the file already exists.")
         else:
-            open(f"{self.home}/{self.fname}", "w")
+            try:
+                open(f"{self.home}/{self.fname}", "w")
+            except FileNotFoundError:
+                print("Looks like you're trying to create a file \
+inside of a directory that doesn't exist.")
 
     @home_folder_checker
     def show(self, fname, *args):
@@ -115,7 +130,7 @@ doesn't exist!")
     def edit(self, fname, *args):
         self.fname = fname
         try:
-            editor = pickle.load(open(f"{self.home}/EDITOR"))
+            editor = pickle.load(open(f"{os.getcwd()}/editor.pkl", "rb"))
             subprocess.run([editor, f"{self.home}/{self.fname}"])
         except OSError:
             try:
@@ -129,6 +144,9 @@ Exception details: {id}""")
         self.dname = dname
         try:
             os.mkdir(f"{self.home}/{self.dname}")
+        # Recursive
+        except FileNotFoundError:
+            os.makedirs(f"{self.home}/{self.dname}")
         except FileExistsError:
             print("That directory already exists!")
     
@@ -158,7 +176,7 @@ remove is not empty. Remove it anyways? [Y/n] ")
             print(f"""An exception occurred during the process.
 Exception details: {id}""")
 
-    # Esto hay que mejorarlo
+    # TODO: Mejorar este comando.
     def help_fkos(self, *, command):
         self.command = command
         if self.command:
@@ -188,8 +206,8 @@ Exception details: {id}""")
     @home_folder_checker
     def cd(self, directory, *args):
         self.directory = directory
-        os.chdir(self.directory)
-    
+        os.chdir(f"{self.home}/{self.directory}")
+
     # WIP: Execute python commands directly without
     # starting interpreter with 'shell'
     # def python(self, *args):

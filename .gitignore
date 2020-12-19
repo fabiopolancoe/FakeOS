@@ -1,8 +1,13 @@
 # Editors
-.vscode
-.idea
-.vim
-.atom
+.vscode/
+.idea/
+.vim/
+.atom/
+
+# Auto-Generated Files
+editor.pkl
+home/test/
+home/prueba.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

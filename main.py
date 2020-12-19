@@ -33,13 +33,15 @@ def exit_fkos(*args):
             print("Please, enter a valid option.")
 
 
+# TODO: Create multiple keys for the same item
+# For example: "hello", "helloworld" and "hello_world" call hello()
 all_commands = {
     "hello": apps.hello,
     "numguess": apps.numguess,
     "ls": apps.ls,
     "new": apps.new,
     "show": apps.show,
-    # Remember to create the new dictionary of help
+    # TODO: Create the new dictionary of help
     # "help": apps.help_fkos,
     "pyshell": apps.pyshell,
     "pyrun": apps.pyrun,
@@ -55,7 +57,11 @@ all_commands = {
 
 # Get input with a BASH style
 while True:
-    op = input(f"[{getuser()}@FakeOS ~]$ ")
+    if apps.home == f"{os.getcwd()}/home":
+        apps.homename = "~"
+    else:
+        apps.homename = f"~/{apps.acdir}/"
+    op = input(f"[{getuser()}@FakeOS {apps.homename}]$ ")
     op = op.lower()
     # Get the arguments
     arguments = op.split(" ")
@@ -63,8 +69,8 @@ while True:
     command = arguments[0]
     del arguments[0]
     # This is for debugging purposes
-    print("Arguments: ", end="")
-    for i in arguments: 
+    print("Arguments: ", end='')
+    for i in arguments:
         print(i, end=' ')
     print("\n")
 
@@ -77,7 +83,9 @@ while True:
             all_commands[command]()
     # Error management
     except KeyError:
-        print(f"Whoops! The command \"{op}\" does not exist.")
+        print(f"Whoops! The command \"{command}\" does not exist.")
+    # This doesn't seems to work, it uses the except with "Exception as id"
+    # TODO: Fix Missing Arguments Handling.
     except TypeError:
         print(f"Looks like you have missing arguments...")
     except Exception as id:
