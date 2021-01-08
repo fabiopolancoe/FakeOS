@@ -8,7 +8,6 @@ import signal
 import sys
 
 # TODO: Update Main File with latest chnages of Dev
-# TODO: Change File Structure
 
 # Print the name, if the text2art module is found.
 try:
