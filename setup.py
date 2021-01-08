@@ -50,7 +50,7 @@ def start():
         print("The python-dotenv module is installed.")
 
     # Let the user choose the editor
-    print("\n[Vim|Neovim|Notepad|VSCode]")
+    print("\n[Vim|Neovim|Atom|Notepad|VSCode]")
     editor = input(
         "Choose your favorite text editor (It should be already installed): ")
     editor = editor.lower()
