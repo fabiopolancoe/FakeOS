@@ -117,7 +117,7 @@ class func:
                 editor = os.getenv("EDITOR")
                 subprocess.run([editor, f".\\home\\{filename}"], shell=True)
             except OSError:
-                subprocess.run([editor, f".\\home\\{filename}"], shell=True)
+                subprocess.run(["notepad.exe", f".\\home\\{filename}"])
 
     def delete(self, filename):
         if ".." in filename:
