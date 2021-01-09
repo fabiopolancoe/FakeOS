@@ -32,6 +32,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+cover/
 develop-eggs/
 dist/
 downloads/
@@ -44,6 +45,8 @@ sdist/
 var/
 wheels/
 pip-wheel-metadata/
+poetry.lock
+pyproject.toml
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -97,6 +100,7 @@ docs/_build/
 doc/_build/
 
 # PyBuilder
+.pybuilder/
 target/
 
 # Jupyter Notebook
@@ -129,11 +133,14 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.virtualenv
 env/
 venv/
+virtualenv/
 ENV/
 env.bak/
 venv.bak/
+virtualenv.bak/
 pythonenv*
 
 # Spyder project settings
@@ -156,6 +163,9 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+
+# Cython debug symbols
+cython_debug/
 
 # profiling data
 .prof
