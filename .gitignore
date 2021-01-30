@@ -4,7 +4,7 @@
 .vim/
 .atom/
 
-# Auto-Generated Files
+# Auto-Generated or Test's Files
 editor.pkl
 home/test/
 home/prueba.txt

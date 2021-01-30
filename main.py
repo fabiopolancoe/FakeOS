@@ -71,7 +71,7 @@ while True:
     # This is for debugging purposes
     print("Arguments: ", end='')
     for i in arguments:
-        print(i, end=' ')
+        print(i, end=" ")
     print("\n")
 
     try:
