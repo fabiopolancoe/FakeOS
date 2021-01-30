@@ -2,33 +2,30 @@
 
 # Set Up module, originally created by FabioPolancoE and Sebastian-Byte
 # Edited by Suaj
-# Ported to Windows by Sebastian-byte
 
-# import pip ## Acording to pip is recommended using "-m pip" because this module is deprecated.
-import sys  # To check actual OS
-from os import getcwd, environ, system
+import subprocess, pickle, sys, os
 from getpass import getuser  # To get the name of the PC user
-
 
 def install_module(module):
     '''Installs the given module if the user allows to do so.
     Returns True or False depending on the confirmation.'''
     while True:
-        conf = input(
-            f"The {module} module is not installed, do you want to install it? [Y/n]: ")
-        if conf.lower() in ["y", "yes"]:
+        conf = input(f"The {module} module is not installed, do you want\
+ to install it? [Y/n]: ")
+        conf = conf.lower()
+        if conf in ["y", "yes", "", " "]:
             print(f"Ok, installing the {module} module...")
-            system(f"python -m pip install {module}")
+            subprocess.run(["python", "-m", "pip", "install", module], shell=True)
             return True
-        elif conf.lower() in ["n", "no", "nope"]:
-            print(f"Ok, the {module} module will not be installed.")
+        elif conf in ["n", "no", "nope"]:
+            print(f"Ok, the {module} module will not be \
+installed.")
             return False
         else:
             print("Please, select a valid option.")
 
-
-def start():
-    '''The script inside of a function for easy calls, if needed'''
+def start_setup():
+    '''The script inside of a function for easy calls'''
     print("Welcome to the FakeOS installation script")
 
     # Check if the art module is installed
@@ -40,32 +37,46 @@ def start():
     else:
         print("The art module is installed.")
 
-    # Check if the python-dotenv module is installed
-    print("Checking if the python-dotenv module is installed...")
+  # Check if the python-colortext module is installed
+    print("Checking if the python-colortext module is \
+installed...")
     try:
-        import dotenv
+        from ColorText import ColorText
     except ModuleNotFoundError:
-        install_module("python-dotenv")
+        install_module("Python-ColorText")
     else:
-        print("The python-dotenv module is installed.")
+        print("The python-colortext module is installed.")
+
+    if not sys.platform.startswith("win32"):
+        # Add FakeOS to PATH
+        conf = input("Do you want to add FakeOS to PATH? [Y/n]: ")
+        if conf.lower() in ["y", "yes"]:
+            try:
+                if "bash" in os.environ['SHELL']:
+                    fname = ".bashrc"
+                elif "zsh" in os.environ['SHELL']:
+                    fname = ".zshrc"
+                    with open(f"/home/{getuser()}/{fname}", "a") as f:
+                        f.writelines(f"alias fakeos='python3 {os.getcwd()}/main.py'\
+ \nexport FAKEOSHOME={os.getcwd()}")
+            except Exception as identifier:
+                print("Sorry, an exception occurred during the process.")
+                print(f"Exception Details: {identifier}")
+
+        elif conf.lower() in ["n", "no", "nope"]:
+            print("Ok, FakeOS will not be added to PATH.")
 
     # Let the user choose the editor
-    print("\n[Vim|Neovim|Atom|Notepad|VSCode]")
-    editor = input(
-        "Choose your favorite text editor (It should be already installed): ")
+    print("\n[Vim|Neovim|VSCode|Notepad]")
+    editor = input("Choose your favorite text editor (It should be already installed): ")
     editor = editor.lower()
-
     if editor == "neovim":
         editor = "nvim"
-    if editor == "vscode":
+    elif editor == "vscode":
         editor = "code"
-
-    with open("./.env", "w") as data:
-        data.write(f"EDITOR={editor}")
-
-    print("\nThe Setup has ended. \
-Please close and reopen your terminal/console to apply all changes. Have fun! :D")
-
+    with open("./editor.pkl", "wb") as f:
+        pickle.dump(editor, f)
+    print("\nThe Setup has ended. Please close and reopen your terminal to apply all changes. Have fun! :D")
 
 if __name__ == "__main__":
-    start()
+    start_setup()

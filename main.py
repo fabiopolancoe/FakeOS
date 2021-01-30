@@ -1,69 +1,93 @@
 #!/usr/bin/python3
 
-# Main module, originally created by FabioPolancoE
-# Edited by Suaj
-# Ported to Windows by Sebastian-byte
+# Main module, originally coded by FabioPolancoE, Sebastian-Byte,
+# FRostri and SuajCarrot.
 
-import signal
-import sys
-
-# TODO: Update Main File with latest changes of Dev
+import os, sys, setup
+from new_apps import *
+from getpass import getuser
 
 # Print the name, if the text2art module is found.
 try:
     from art import text2art
-    print(text2art("FakeOS"))
 except ModuleNotFoundError:
     pass
+else:
+    print(text2art("FakeOS"))
 
-from getpass import getuser  # To get the current PC user.
+print("Welcome to FakeOS!")  # Welcome Message
+print("Note: The \"help\" command is temporarily disabled.")
 
-print("Welcome to FakeOS!")  # Welcome message, printed always.
+apps = apps()
 
-
-def signal_handler(signal, frame):
-    print("\nBye ;D!")
-    sys.exit(0)
-
-
-def handle_command(data):
-    '''Handles the command the user entered. If the command is not
-    processed for any reason, the function returns False.'''
-    if data:
-        method = data[0]
-        del data[0]
-        if method.lower() == "exit":
-            sure = input("Do you really want to logout? [Y/n]: ")
-            sure = sure.lower()
-            if sure in ["y", "yes", "", " "]:
-                print("Bye! ;D")
-                sys.exit(0)
-
-            elif sure in ["n", "no", "nope"]:
-                return False
-            else:
-                print("You did not choose a correct option.")
-                return False
+# To avoid possible errors with other modules, the exit
+# function is defined here
+def exit_fkos(*args):
+    while True:
+        op = input("Are you sure you want to exit? [Y/n]: ")
+        op = op.lower()
+        if op in ["y", "yes", " ", ""]:
+            sys.exit(0)
+        elif op in ["n", "no", "nope"]:
+            break
         else:
-            from apps import func
-            app = func()
-            try:
-                if data:
-                    eval("app." + method + "(*data)")
-                    return True
-                else:
-                    eval("app." + method + "()")
-                    return True
-            except:
-                print("Couldn't handle that command D:")
-                return False
-    else:
-        return False
+            print("Please, enter a valid option.")
 
+# TODO: Create multiple keys for the same item
+# For example: "hello", "helloworld" and "hello_world" call hello()
+all_commands = {
+    "hello": apps.hello,
+    "numguess": apps.numguess,
+    "ls": apps.ls,
+    "new": apps.new,
+    "show": apps.show,
+    # TODO: Create the new dictionary of help
+    # "help": apps.help_fkos,
+    "pyshell": apps.pyshell,
+    "pyrun": apps.pyrun,
+    "interactive": apps.interactive,
+    "edit": apps.edit,
+    "install": setup.start_setup,
+    "cd": apps.cd,
+    "clear": apps.clear,
+    "mkdir": apps.mkdir,
+    "remove": apps.remove,
+    "exit": exit_fkos
+}
 
-signal.signal(signal.SIGINT, signal_handler)
-
-# User input
+# Get input with a BASH style
 while True:
-    command = input(f"[{getuser()}@FakeOS]$ ")
-    handle_command(command.split())
+    if apps.home == f"{os.getcwd()}/home":
+        apps.homename = "~"
+    else:
+        apps.homename = f"~/{apps.acdir}/"
+    op = input(f"[{getuser()}@FakeOS {apps.homename}]$ ")
+    op = op.lower()
+    # Get the arguments
+    arguments = op.split(" ")
+    # The first element is the command itself
+    command = arguments[0]
+    del arguments[0]
+    # This is for debugging purposes
+    print("Arguments: ", end='')
+    for i in arguments:
+        print(i, end=" ")
+    print("\n")
+
+    try:
+        # Call the function with the given arguments
+        if len(arguments) > 0:
+            all_commands[command](*arguments)
+        # Call the function without arguments
+        else:
+            all_commands[command]()
+    # Error management
+    except KeyError:
+        print(f"Whoops! The command \"{command}\" does not exist.")
+    # This doesn't seems to work, it uses the except with "Exception as id"
+    # TODO: Fix Missing Arguments Handling.
+    except TypeError:
+        print(f"Looks like you have missing arguments...")
+    except Exception as id:
+        print(f"""An exception occurred during the process.
+Exception details: {id}""")
