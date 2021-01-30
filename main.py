@@ -7,7 +7,7 @@
 import signal
 import sys
 
-# TODO: Update Main File with latest chnages of Dev
+# TODO: Update Main File with latest changes of Dev
 
 # Print the name, if the text2art module is found.
 try:
